@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @Document("tasks")
-public class TasksEntity {
+public class TaskEntity {
 
     @Id
     private String id;

@@ -1,15 +1,17 @@
 package com.cyanpc.task_scheduler.bussiness;
 
-import com.cyanpc.task_scheduler.bussiness.dto.TasksDTO;
+import com.cyanpc.task_scheduler.bussiness.dto.TaskDTO;
 import com.cyanpc.task_scheduler.bussiness.mapper.TaskConverter;
-import com.cyanpc.task_scheduler.infrastructure.entity.TasksEntity;
+import com.cyanpc.task_scheduler.infrastructure.entity.TaskEntity;
 import com.cyanpc.task_scheduler.infrastructure.enums.NotificationStatusEnum;
 import com.cyanpc.task_scheduler.infrastructure.repository.TaskRepository;
 import com.cyanpc.task_scheduler.infrastructure.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.mongodb.core.aggregation.ArithmeticOperators;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -18,15 +20,19 @@ public class TaskService {
     private final TaskRepository taskRepository;
     private final TaskConverter taskConverter;
     private final JwtUtil jwtUtil;
-    public TasksDTO setTask(String token, TasksDTO dto){
+    public TaskDTO setTask(String token, TaskDTO dto){
         String email = jwtUtil.extractUsername(token.substring(7));
         dto.setCreationDate(LocalDateTime.now());
         dto.setNotificationStatusEnum(NotificationStatusEnum.WAITING);
         dto.setUserEmail(email);
-        TasksEntity entity = taskConverter.toTasksEntity(dto);
+        TaskEntity entity = taskConverter.toTasksEntity(dto);
 
         return taskConverter.toTasksDTO(
                 taskRepository.save(entity));
 
+    }
+
+    public List<TaskDTO> findScheduledTasksByPeriod(LocalDateTime dateInitial, LocalDateTime dateFinal){
+        return taskConverter.toListTaskDTO(taskRepository.findByEventDateBetween(dateInitial, dateFinal));
     }
 }
