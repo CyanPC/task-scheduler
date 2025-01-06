@@ -30,4 +30,10 @@ public class TaskController {
 
         return ResponseEntity.ok(taskService.findScheduledTasksByPeriod(dateInitial, dateFinal));
     }
+
+    @GetMapping
+    public ResponseEntity<List<TaskDTO>> findTaskByEmail(@RequestHeader("Authorization") String token) {
+        List<TaskDTO> tasks = taskService.findTaskByEmail(token);
+        return ResponseEntity.ok(tasks);
+    }
 }

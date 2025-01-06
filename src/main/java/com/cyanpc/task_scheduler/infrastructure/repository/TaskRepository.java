@@ -11,4 +11,5 @@ import java.util.List;
 public interface TaskRepository extends MongoRepository<TaskEntity, String> {
 
     List<TaskEntity> findByEventDateBetween(LocalDateTime dateInitial, LocalDateTime dateFinal);
+    List<TaskEntity> findByUserEmail(String email);
 }

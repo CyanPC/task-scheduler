@@ -7,7 +7,6 @@ import com.cyanpc.task_scheduler.infrastructure.enums.NotificationStatusEnum;
 import com.cyanpc.task_scheduler.infrastructure.repository.TaskRepository;
 import com.cyanpc.task_scheduler.infrastructure.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.mongodb.core.aggregation.ArithmeticOperators;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -33,6 +32,13 @@ public class TaskService {
     }
 
     public List<TaskDTO> findScheduledTasksByPeriod(LocalDateTime dateInitial, LocalDateTime dateFinal){
-        return taskConverter.toListTaskDTO(taskRepository.findByEventDateBetween(dateInitial, dateFinal));
+        return taskConverter.toTaskListDTO(taskRepository.findByEventDateBetween(dateInitial, dateFinal));
+    }
+
+    public List<TaskDTO> findTaskByEmail(String token){
+        String email = jwtUtil.extractUsername(token.substring(7));
+        List<TaskEntity> taskList = taskRepository.findByUserEmail(email);
+
+        return taskConverter.toTaskListDTO(taskList);
     }
 }
