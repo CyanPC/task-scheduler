@@ -2,6 +2,7 @@ package com.cyanpc.task_scheduler.controller;
 
 import com.cyanpc.task_scheduler.bussiness.TaskService;
 import com.cyanpc.task_scheduler.bussiness.dto.TaskDTO;
+import com.cyanpc.task_scheduler.infrastructure.enums.NotificationStatusEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +26,8 @@ public class TaskController {
 
     @GetMapping("/events")
     public ResponseEntity<List<TaskDTO>> findTaskListByPeriod(
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime dateInitial,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime dateFinal){
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateInitial,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateFinal) {
 
         return ResponseEntity.ok(taskService.findScheduledTasksByPeriod(dateInitial, dateFinal));
     }
@@ -35,5 +36,24 @@ public class TaskController {
     public ResponseEntity<List<TaskDTO>> findTaskByEmail(@RequestHeader("Authorization") String token) {
         List<TaskDTO> tasks = taskService.findTaskByEmail(token);
         return ResponseEntity.ok(tasks);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Void> deleteTaskByID(@RequestParam("id") String id) {
+        taskService.deleteTaskByID(id);
+
+        return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping
+    public ResponseEntity<TaskDTO> changeNotificationStatus(@RequestParam("status") NotificationStatusEnum status,
+                                                            @RequestParam("id") String id) {
+        return ResponseEntity.ok(taskService.changeStatus(status, id));
+    }
+
+    @PutMapping
+    public ResponseEntity<TaskDTO> updateTask(@RequestBody TaskDTO dto,
+                                              @RequestParam("id") String id) {
+        return ResponseEntity.ok(taskService.updateTask(dto, id));
     }
 }
