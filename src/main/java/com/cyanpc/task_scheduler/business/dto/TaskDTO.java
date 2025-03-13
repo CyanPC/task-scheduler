@@ -1,4 +1,4 @@
-package com.cyanpc.task_scheduler.bussiness.dto;
+package com.cyanpc.task_scheduler.business.dto;
 
 import com.cyanpc.task_scheduler.infrastructure.enums.NotificationStatusEnum;
 import com.fasterxml.jackson.annotation.JsonFormat;

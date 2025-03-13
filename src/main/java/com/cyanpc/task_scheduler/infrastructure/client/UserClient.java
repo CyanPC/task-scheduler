@@ -1,6 +1,6 @@
 package com.cyanpc.task_scheduler.infrastructure.client;
 
-import com.cyanpc.task_scheduler.bussiness.dto.UserDTO;
+import com.cyanpc.task_scheduler.business.dto.UserDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;

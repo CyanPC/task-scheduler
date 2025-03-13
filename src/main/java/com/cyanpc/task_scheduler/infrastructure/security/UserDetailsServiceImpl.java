@@ -2,7 +2,7 @@ package com.cyanpc.task_scheduler.infrastructure.security;
 
 
 
-import com.cyanpc.task_scheduler.bussiness.dto.UserDTO;
+import com.cyanpc.task_scheduler.business.dto.UserDTO;
 import com.cyanpc.task_scheduler.infrastructure.client.UserClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;

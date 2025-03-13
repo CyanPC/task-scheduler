@@ -1,6 +1,6 @@
-package com.cyanpc.task_scheduler.bussiness.mapper;
+package com.cyanpc.task_scheduler.business.mapper;
 
-import com.cyanpc.task_scheduler.bussiness.dto.TaskDTO;
+import com.cyanpc.task_scheduler.business.dto.TaskDTO;
 import com.cyanpc.task_scheduler.infrastructure.entity.TaskEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

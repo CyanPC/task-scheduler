@@ -1,8 +1,8 @@
-package com.cyanpc.task_scheduler.bussiness;
+package com.cyanpc.task_scheduler.business;
 
-import com.cyanpc.task_scheduler.bussiness.dto.TaskDTO;
-import com.cyanpc.task_scheduler.bussiness.mapper.TaskConverter;
-import com.cyanpc.task_scheduler.bussiness.mapper.TaskUpdateConverter;
+import com.cyanpc.task_scheduler.business.dto.TaskDTO;
+import com.cyanpc.task_scheduler.business.mapper.TaskConverter;
+import com.cyanpc.task_scheduler.business.mapper.TaskUpdateConverter;
 import com.cyanpc.task_scheduler.exceptions.ResourceNotFoundException;
 import com.cyanpc.task_scheduler.infrastructure.entity.TaskEntity;
 import com.cyanpc.task_scheduler.infrastructure.enums.NotificationStatusEnum;

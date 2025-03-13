@@ -1,8 +1,6 @@
-package com.cyanpc.task_scheduler.bussiness.dto;
+package com.cyanpc.task_scheduler.business.dto;
 
 import lombok.*;
-
-import java.util.List;
 
 @Getter
 @Setter

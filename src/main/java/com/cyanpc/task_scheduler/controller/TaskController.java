@@ -1,7 +1,7 @@
 package com.cyanpc.task_scheduler.controller;
 
-import com.cyanpc.task_scheduler.bussiness.TaskService;
-import com.cyanpc.task_scheduler.bussiness.dto.TaskDTO;
+import com.cyanpc.task_scheduler.business.TaskService;
+import com.cyanpc.task_scheduler.business.dto.TaskDTO;
 import com.cyanpc.task_scheduler.infrastructure.enums.NotificationStatusEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
